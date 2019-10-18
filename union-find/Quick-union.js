@@ -19,5 +19,10 @@ function union(p, q) {
     return id;
 }
 
+function connected(p, q) {
+    return find(p) === find(q);
+}
+
 console.log(find(7));
+console.log(connected(3, 5));
 console.log(union(3, 5));
