@@ -7,7 +7,7 @@ function constructor(n) {
     return id;
 }
 
-function connected(p, q) {
+function find(p, q) {
     return id[p] === id[q];
 }
 
