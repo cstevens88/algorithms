@@ -1,4 +1,4 @@
-const id = [0,1,9,4,9,6,6,7,8,9];
+const id = [0,9,6,5,4,2,6,1,0,5];
 
 function constructor(n) {
     for(i = 0; i < n; i++) {
@@ -7,26 +7,17 @@ function constructor(n) {
     return id;
 }
 
-function findRoot(p) {
-    let pParent = id[p];
-    while(pParent !== p) {
-        p = pParent;
-        pParent = id[p];
+function find(p) {
+    while (p != id[p]) {
+        p = id[p];
     }
-    return pParent;
-}
-
-function find(p, q) {
-    return findRoot(p) === findRoot(q);
+    return p;
 }
 
 function union(p, q) {
-    id[findRoot(p)] = id[findRoot(q)];
+    id[find(p)] = id[find(q)];
     return id;
 }
 
-console.log('root of p: ', findRoot(3));
-console.log('root of q: ', findRoot(6));
-console.log('shared root?: ', find(3, 5));
+console.log(find(7));
 console.log(union(3, 5));
-console.log('now shared root?: ', find(3, 5));
