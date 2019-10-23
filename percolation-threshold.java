@@ -26,32 +26,34 @@ public class Percolation {
         if (row < 1 || row > size || col < 1 || col > size) {
             throw new IllegalArgumentException("Row and column must be between 1 and " + size);
         }
-        percolationGrid[row - 1][col - 1] = true;
-        openSites++;
-        //top row
-        if (row == 1) {
-            wquf.union(xyToArrayIndex(row, col), virtualTop);
-        }
-        //bottom row
-        if (row == size) {
-            wquf.union(xyToArrayIndex(row, col), virtualBottom);
-        }
-        //connect left
-        if (col != 1 && isOpen(row, col - 1)) {
-            wquf.union(xyToArrayIndex(row, col), xyToArrayIndex(row, col - 1));
-        }
+        if(!isOpen(row,col)) {
+            percolationGrid[row - 1][col - 1] = true;
+            openSites++;
+            //top row
+            if (row == 1) {
+                wquf.union(xyToArrayIndex(row, col), virtualTop);
+            }
+            //bottom row
+            if (row == size) {
+                wquf.union(xyToArrayIndex(row, col), virtualBottom);
+            }
+            //connect left
+            if (col != 1 && isOpen(row, col - 1)) {
+                wquf.union(xyToArrayIndex(row, col), xyToArrayIndex(row, col - 1));
+            }
 
-        //connect right
-        if (col != size && isOpen(row, col + 1)) {
-            wquf.union(xyToArrayIndex(row, col), xyToArrayIndex(row, col + 1));
-        }
-        //connect top
-        if (row != 1 && isOpen(row - 1, col)) {
-            wquf.union(xyToArrayIndex(row, col), xyToArrayIndex(row - 1, col));
-        }
-        //connect bottom
-        if (row != size && isOpen(row + 1, col)) {
-            wquf.union(xyToArrayIndex(row, col), xyToArrayIndex(row + 1, col));
+            //connect right
+            if (col != size && isOpen(row, col + 1)) {
+                wquf.union(xyToArrayIndex(row, col), xyToArrayIndex(row, col + 1));
+            }
+            //connect top
+            if (row != 1 && isOpen(row - 1, col)) {
+                wquf.union(xyToArrayIndex(row, col), xyToArrayIndex(row - 1, col));
+            }
+            //connect bottom
+            if (row != size && isOpen(row + 1, col)) {
+                wquf.union(xyToArrayIndex(row, col), xyToArrayIndex(row + 1, col));
+            }
         }
     }
 
