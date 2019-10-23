@@ -24,6 +24,7 @@ public class Percolation {
 
     public void open(int row, int col) {
         percolationGrid[row - 1][col - 1] = true;
+        openSites++;
         //top row
         if (row == 1) {
             wquf.union(xyToArrayIndex(row, col), virtualTop);
@@ -82,7 +83,6 @@ public class Percolation {
             int col = StdRandom.uniform(3) + 1;
             if (!p.isOpen(row, col)) {
                 p.open(row, col);
-                p.openSites++;
             }
         }
         System.out.println("");
