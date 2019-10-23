@@ -23,6 +23,9 @@ public class Percolation {
 
 
     public void open(int row, int col) {
+        if (row < 1 || row > size || col < 1 || col > size) {
+            throw new IllegalArgumentException("Row and column must be between 1 and " + size);
+        }
         percolationGrid[row - 1][col - 1] = true;
         openSites++;
         //top row
